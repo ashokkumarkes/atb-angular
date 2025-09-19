@@ -1,0 +1,28 @@
+
+<div class="container mt-3">
+  <h2>User List Table 123</h2>           
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for(user of userData; track user._id){
+        <tr>
+            <td>{{user._id}}</td>
+            <td>{{ user.name}}</td>
+            <td>{{ user.email}}</td>
+            <td><a routerLink="user/{{user._id}}">Update</a></td>
+        </tr>
+        }
+        @empty{
+
+        }
+    </tbody>
+  </table>
+</div>
+
