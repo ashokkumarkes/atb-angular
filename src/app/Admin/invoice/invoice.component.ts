@@ -7,5 +7,5 @@ import { SidebarComponent } from '../layout/sidebar/sidebar.component';
   styleUrl: './invoice.component.css'
 })
 export class InvoiceComponent {
-
+  title = 'Invoice List';
 }
