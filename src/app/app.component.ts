@@ -3,8 +3,9 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthServiceService } from './authService/auth-service.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-
+// import { LayoutModule } from './Admin/layout/layout.module';
+import { SidebarComponent } from './Admin/layout/sidebar/sidebar.component';
+import { HeaderComponent } from './Admin/layout/header/header.component';
 @Component({
   selector: 'app-root',
   imports: [CommonModule ,RouterOutlet,FormsModule],

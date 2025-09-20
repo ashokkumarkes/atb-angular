@@ -3,7 +3,7 @@ import { AuthServiceService } from '../../../authService/auth-service.service';
 import { HeaderComponent } from '../header/header.component';
 @Component({
   selector: 'app-sidebar',
-  imports: [HeaderComponent],
+  imports: [],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })

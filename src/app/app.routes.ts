@@ -3,6 +3,9 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { authGuard, guestGuard } from './auth/auth.guard';
+import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+import { LayoutComponent } from './Admin/layout/layout.component';
+import { InvoiceComponent } from './Admin/invoice/invoice.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full' },
     {path:'users', component:UserComponent, canActivate: [authGuard]}, // Eager route
@@ -11,6 +14,19 @@ export const routes: Routes = [
     {path:'sign-up',component:SignupComponent,canActivate: [guestGuard]},
     {
         path:'admin',
-        loadChildren: () => import('./Admin/admin.module').then(m => m.AdminModule)
-    },
+        component:LayoutComponent,
+        children:[
+            {
+                path:'dashboard',
+                component:DashboardComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path:'invoice',
+                component:InvoiceComponent,
+                canActivate: [authGuard]
+            }
+        ],
+
+    }
 ];
