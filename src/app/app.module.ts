@@ -2,23 +2,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component'; // Root component
-
+import { LayoutModule } from './Admin/layout/layout.module';
 @NgModule({
   declarations: [
-    AppComponent // Declare your components here
+    AppComponent
   ],
   imports: [
-    BrowserModule,         // Required for browser apps
-    FormsModule,           // For Template-driven forms
-    ReactiveFormsModule,   // For Reactive forms
-    // HttpClientModule,      // For HTTP requests
-    RouterModule.forRoot([{ path: 'products', loadChildren: () => import('./Admin/products/products.module').then(m => m.ProductsModule) }]) // Add routes here
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot([]),
   ],
-  providers: [],           // Services go here
-  bootstrap: [AppComponent] // Root component to load at start
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
