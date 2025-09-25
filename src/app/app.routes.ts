@@ -7,6 +7,7 @@ import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { LayoutComponent } from './Admin/layout/layout.component';
 import { InvoiceComponent } from './Admin/invoice/invoice.component';
 import { HsnCodeComponent } from './Admin/hsn-code/hsn-code.component';
+import { ProductsComponent } from './Admin/products/products.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full' },
     
@@ -34,6 +35,10 @@ export const routes: Routes = [
             {
                 path:'hsn-code',
                 component:HsnCodeComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path:'product',component:ProductsComponent,
                 canActivate: [authGuard]
             }
         ],

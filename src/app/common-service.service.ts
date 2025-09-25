@@ -12,4 +12,8 @@ export class CommonServiceService {
   login(data:any): Observable<any> {
     return this.http.post(`${this.BASE_URL}/auth/login`, data.value);
   }
+
+  addHsnCode(data:any){
+    return this.http.post(`${this.BASE_URL}/masters/add-hsn-code`, data.value);
+  }
 }
