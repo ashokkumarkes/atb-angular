@@ -8,6 +8,7 @@ import { LayoutComponent } from './Admin/layout/layout.component';
 import { InvoiceComponent } from './Admin/invoice/invoice.component';
 import { HsnCodeComponent } from './Admin/hsn-code/hsn-code.component';
 import { ProductsComponent } from './Admin/products/products.component';
+import { HsnCodeListComponent } from './Admin/hsn-code-list/hsn-code-list.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full' },
     
@@ -32,6 +33,11 @@ export const routes: Routes = [
                 path:'users', component:UserComponent, 
                 canActivate: [authGuard]
             }, // Eager route
+            {
+                path:'hsn-code-list',
+                component:HsnCodeListComponent,
+                canActivate: [authGuard]
+            },
             {
                 path:'hsn-code',
                 component:HsnCodeComponent,

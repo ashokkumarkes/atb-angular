@@ -1,0 +1,85 @@
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <div class="pcoded-content">
+                        <div class="page-header">
+                            <div class="page-block">
+                                <div class="row align-items-center">
+                                    <div class="col-md-8">
+                                        <div class="page-header-title">
+                                            <h5 class="m-b-10">Bootstrap Border Sizes</h5>
+                                            <p class="m-b-0">Lorem Ipsum is simply dummy text of the printing</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <ul class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href=""> <i class="fa fa-home"></i> </a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="#!">Bootstrap Table</a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="#!">Border Table</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>HSN Code</h5>
+                                                <a href="admin/hsn-code" >Add Code</a>
+                                            </div>
+                                            <div class="card-block table-border-style">
+                                                <div class="table-responsive">
+                                                    <div class="hsn-list" style="height: 400px; overflow-y: auto;" (scroll)="onScroll($event)">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>State ID</th>
+                                                                <th>HSN Code</th>
+                                                                <th>Description</th>
+                                                                <th>GST Rate</th>
+                                                                <th>SGST Rate</th>
+                                                                <th>CGST Rate</th>
+                                                                <th>IGST Rate</th>
+                                                                <th>CESS Rate</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr *ngFor="let hsn of hsnCodeList; let i = index">
+                                                                    <th scope="row">{{i + 1}}</th>
+                                                                    <td>{{hsn.stateID}}</td>
+                                                                    <td>{{hsn.hsnCode}}</td>
+                                                                    <td>{{hsn.description}}</td>
+                                                                    <td>{{hsn.gstRate}}</td>
+                                                                    <td>{{hsn.sgstRate}}</td>
+                                                                    <td>{{hsn.cgstRate}}</td>
+                                                                    <td>{{hsn.igstRate}}</td>
+                                                                    <td>{{hsn.cessRate}}</td>
+                                                                </tr>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
