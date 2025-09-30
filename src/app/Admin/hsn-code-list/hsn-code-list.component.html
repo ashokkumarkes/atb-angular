@@ -52,19 +52,21 @@
                                                                 <th>CGST Rate</th>
                                                                 <th>IGST Rate</th>
                                                                 <th>CESS Rate</th>
+                                                                <th>Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                                 <tr *ngFor="let hsn of hsnCodeList; let i = index">
                                                                     <th scope="row">{{i + 1}}</th>
                                                                     <td>{{hsn.stateID}}</td>
-                                                                    <td>{{hsn.hsnCode}}</td>
-                                                                    <td>{{hsn.description}}</td>
+                                                                    <td>{{hsn.hsnCode | lowercase}}</td>
+                                                                    <td>{{hsn.description | lowercase}}</td>
                                                                     <td>{{hsn.gstRate}}</td>
                                                                     <td>{{hsn.sgstRate}}</td>
                                                                     <td>{{hsn.cgstRate}}</td>
                                                                     <td>{{hsn.igstRate}}</td>
                                                                     <td>{{hsn.cessRate}}</td>
+                                                                    <td> <a href=""> edit</a></td>
                                                                 </tr>
                                                             
                                                         </tbody>

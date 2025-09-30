@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Pipe, PipeTransform } from '@angular/core';
 import { CommonServiceService } from '../../common-service.service';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './hsn-code-list.component.html',
   styleUrl: './hsn-code-list.component.css'
 })
-export class HsnCodeListComponent {
+export class HsnCodeListComponent implements PipeTransform {
   hsnCodeList: any[] = [];
   page = 1;
   limit = 20;
@@ -15,6 +15,9 @@ export class HsnCodeListComponent {
   loading = false;
 
   constructor(private commonService: CommonServiceService) {}
+  transform(value: any, ...args: any[]) {
+    throw new Error('Method not implemented.');
+  }
   ngOnInit() {
     this.fetchHsnCodeList();
   } 
@@ -42,7 +45,7 @@ export class HsnCodeListComponent {
     const scrollHeight = event.target.scrollHeight;
     const clientHeight = event.target.clientHeight;
 
-    if (scrollTop + clientHeight >= scrollHeight - 10) { // bottom reached
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
       this.fetchHsnCodeList();
     }
   }
