@@ -20,4 +20,8 @@ export class CommonServiceService {
   getHsnCodeList(page: number = 1, limit: number = 20){
     return this.http.get(`${this.BASE_URL}/masters/hsn-code-list?page=${page}&limit=${limit}`);
   }
+
+  exportHsnCode(){
+    return this.http.get(`${this.BASE_URL}/masters/export-Hsn-Code`);
+  }
 }

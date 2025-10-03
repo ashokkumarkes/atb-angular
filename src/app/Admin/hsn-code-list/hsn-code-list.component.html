@@ -36,7 +36,31 @@
                                             <div class="card-header">
                                                 <h5>HSN Code</h5>
                                                 <a href="admin/hsn-code" >Add Code</a>
+                                                <div class="pull-right">
+                                                    <!-- <div class="btn-group"> -->
+                                                        <!-- <button type="button" class="btn btn-primary btn-sm">Export</button>
+                                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                            <span class="sr-only">Toggle Dropdown</span>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Export as PDF</a>
+                                                            <a class="dropdown-item" href="#">Export as Excel</a>
+                                                        </div> -->
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option" style="width: 140px;">
+                                                                <li><a href="" (click)="exportHsnCode($event)"><i class="fa fa-arrow-down m-r-15 text-c-red"></i></a></li>
+                                                                <li><a href="#" (click)="importHsnCode()"><i class="fa fa-arrow-up m-r-15 text-c-green"></i></a></li>
+                                                                <!-- <li><i class="fa fa open-card-option fa-times"></i></li>
+                                                                <li><i class="fa fa-window-maximize full-card fa-window-restore"></i></li>
+                                                                <li><i class="fa minimize-card fa-minus"></i></li>
+                                                                <li><i class="fa fa-refresh reload-card"></i></li>
+                                                                <li><i class="fa fa-trash close-card"></i></li> -->
+                                                            </ul>
+                                                        </div>
+                                                    <!-- </div> -->
+                                                </div>
                                             </div>
+
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="col-md-3">

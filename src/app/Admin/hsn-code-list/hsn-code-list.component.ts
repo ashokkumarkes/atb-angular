@@ -28,7 +28,6 @@ export class HsnCodeListComponent implements PipeTransform {
     this.loading = true;
     this.commonService.getHsnCodeList(this.page, this.limit).subscribe(
       (response: any) => {
-        // this.hsnCodeList = response.data;
       this.hsnCodeList = [...this.hsnCodeList, ...response.data];
       this.total = response.total;
       this.page++;
@@ -48,5 +47,22 @@ export class HsnCodeListComponent implements PipeTransform {
     if (scrollTop + clientHeight >= scrollHeight - 10) {
       this.fetchHsnCodeList();
     }
+  }
+
+  exportHsnCode(event: Event){
+    event.preventDefault(); 
+    this.commonService.exportHsnCode().subscribe(
+      (response: any) => {
+        console.log('Export response:', response);
+        // Handle file download logic here
+      },
+      (error) => {
+        console.error('Error exporting HSN codes:', error);
+      }
+    );
+  }
+
+  importHsnCode(){
+    alert('import');
   }
 }
