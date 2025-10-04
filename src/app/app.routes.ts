@@ -9,6 +9,9 @@ import { InvoiceComponent } from './Admin/invoice/invoice.component';
 import { HsnCodeComponent } from './Admin/hsn-code/hsn-code.component';
 import { ProductsComponent } from './Admin/products/products.component';
 import { HsnCodeListComponent } from './Admin/hsn-code-list/hsn-code-list.component';
+import { CountryCodeComponent } from './Admin/country-code/country-code.component';
+import { CategoryComponent } from './Admin/category/category.component';
+import { CategoryListComponent } from './Admin/category-list/category-list.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full' },
     
@@ -45,6 +48,18 @@ export const routes: Routes = [
             },
             {
                 path:'product',component:ProductsComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path:'country-code',component:CountryCodeComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path:'add-category', component: CategoryComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path:'category-list', component: CategoryListComponent,
                 canActivate: [authGuard]
             }
         ],

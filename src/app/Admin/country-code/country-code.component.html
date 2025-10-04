@@ -1,0 +1,84 @@
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <div class="pcoded-content">
+                        <div class="page-header">
+                            <div class="page-block">
+                                <div class="row align-items-center">
+                                    <div class="col-md-8">
+                                        <div class="page-header-title">
+                                            <h5 class="m-b-10">Bootstrap Border Sizes</h5>
+                                            <p class="m-b-0">Lorem Ipsum is simply dummy text of the printing</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <ul class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href=""> <i class="fa fa-home"></i> </a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="#!">Bootstrap Table</a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="#!">Border Table</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>{{ title }}</h5>
+                                                <a href="admin/hsn-code" >Add Code</a>
+                                            </div>
+                                            <div class="card-block table-border-style">
+                                                <div class="table-responsive">
+                                                    <div class="hsn-list" style="height: 400px; overflow-y: auto;">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Country Name</th>
+                                                                <th>Country Code</th>
+                                                                <th>Currency</th>
+                                                                <th>Currency Symbol</th>
+                                                                <th>ISO Code</th>
+                                                                <th>Status</th>
+                                                                <th>Created Date</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr *ngFor="let countryName of countryList; let i = index">
+                                                                    <th scope="row">{{i + 1}}</th>
+                                                                    <td>{{countryName.countryName | uppercase }}</td>
+                                                                    <td>{{countryName.countryCode | uppercase }}</td>
+                                                                    <td>{{countryName.currency | uppercase }}</td>
+                                                                    <td>{{countryName.currencySymbol}}</td>
+                                                                    <td>{{countryName.isoCode }}</td>
+                                                                    <td>{{countryName.status  }}</td>
+                                                                    <td> {{countryName.createdAt | date}}</td>
+                                                                    <td> <a href=""> {{'edit' | uppercase }}</a></td>
+                                                                </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

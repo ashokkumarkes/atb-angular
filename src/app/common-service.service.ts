@@ -24,4 +24,19 @@ export class CommonServiceService {
   exportHsnCode(){
     return this.http.get(`${this.BASE_URL}/masters/export-Hsn-Code`);
   }
+
+  getCountryList(){
+    return this.http.get(`${this.BASE_URL}/masters/country-list`);
+  }
+
+  createCountry(data:any){
+    return this.http.post(`${this.BASE_URL}/masters/create-country`, data.value);
+  }
+  getCategoryList(){
+    return this.http.get(`${this.BASE_URL}/masters/category-list`);
+  }
+
+  createCategory(data:any){
+    return this.http.post(`${this.BASE_URL}/masters/create-category`, data.value);
+  }
 }
