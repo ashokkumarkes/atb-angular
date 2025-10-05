@@ -12,6 +12,9 @@ import { HsnCodeListComponent } from './Admin/hsn-code-list/hsn-code-list.compon
 import { CountryCodeComponent } from './Admin/country-code/country-code.component';
 import { CategoryComponent } from './Admin/category/category.component';
 import { CategoryListComponent } from './Admin/category-list/category-list.component';
+import { SubCategoryListComponent } from './Admin/sub-category-list/sub-category-list.component';
+import { BrandsListComponent } from './Admin/brands/brands-list.component';
+import { WalletComponent } from './Admin/wallet/wallet.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full' },
     
@@ -61,8 +64,19 @@ export const routes: Routes = [
             {
                 path:'category-list', component: CategoryListComponent,
                 canActivate: [authGuard]
+            },
+            {
+                path:'sub-category-list', component: SubCategoryListComponent,
+                canActivate: [authGuard]
+            }, 
+            {
+                path:'brands-list', component: BrandsListComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path:'create-wallet', component: WalletComponent,
+                canActivate: [authGuard]
             }
         ],
-
     }
 ];
