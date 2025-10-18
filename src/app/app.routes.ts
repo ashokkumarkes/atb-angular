@@ -15,6 +15,7 @@ import { CategoryListComponent } from './Admin/category-list/category-list.compo
 import { SubCategoryListComponent } from './Admin/sub-category-list/sub-category-list.component';
 import { BrandsListComponent } from './Admin/brands/brands-list.component';
 import { WalletComponent } from './Admin/wallet/wallet.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full' },
     
@@ -38,7 +39,11 @@ export const routes: Routes = [
             {   
                 path:'users', component:UserComponent, 
                 canActivate: [authGuard]
-            }, // Eager route
+            },
+            {
+                path:'add-user', component:AddUserComponent,
+                canActivate:[authGuard]
+            },
             {
                 path:'hsn-code-list',
                 component:HsnCodeListComponent,

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class CommonServiceService {
-  private readonly BASE_URL = 'http://localhost:5000/api';
+  private readonly BASE_URL = 'https://localhost:5000/api';
   constructor(private http: HttpClient) {}
   login(data:any): Observable<any> {
     return this.http.post(`${this.BASE_URL}/auth/login`, data.value);
@@ -38,5 +38,9 @@ export class CommonServiceService {
 
   createCategory(data:any){
     return this.http.post(`${this.BASE_URL}/masters/create-category`, data.value);
+  }
+
+  addToProduct(data:any){
+    return this.http.post(`${this.BASE_URL}/masters/add-product`,data.value);
   }
 }
