@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { UserServiceService } from '../userServices/user-service.service';
 @Component({
   selector: 'app-user',
   imports: [RouterModule],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class UserComponent {
   constructor(private userService: UserServiceService, private route:ActivatedRoute){}
@@ -29,4 +30,9 @@ export class UserComponent {
     }
     );
   }
+
+  ngOnDestroy(){
+    this.userService;
+  }
+
 }

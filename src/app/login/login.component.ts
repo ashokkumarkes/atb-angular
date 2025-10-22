@@ -23,6 +23,7 @@ export class LoginComponent {
     this.commonService.login(this.myForm).subscribe(
       (res)=>{
         this.message = res.message;
+        console.log(res);
         if(res.status) {
           // localStorage.setItem('token', res.Token);
           sessionStorage.setItem('token', res.Token);
