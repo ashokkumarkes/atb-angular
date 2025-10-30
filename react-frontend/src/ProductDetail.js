@@ -8,8 +8,8 @@ function ProductDetail(){
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/masters/get-product/${id}`)
-        .then((res) => setProduct(res.data.data))
+        axios.get(`http://localhost:5000/api/masters/get-products/${id}`)
+        .then((res) => setProduct(res.data.data[0]))
         .catch(() => console.log("Error loading product"));
     }, [id]);
 
@@ -37,7 +37,7 @@ function ProductDetail(){
 
             {/* Product Image */}
             <img 
-            src={"https://via.placeholder.com/300"}
+            src={product.product_thambnail || "https://via.placeholder.com/300"}
             style={{
                 width: "300px",
                 height: "300px",
@@ -48,11 +48,11 @@ function ProductDetail(){
 
             {/* Product Info */}
             <div style={{ flex: 1 }}>
-            <h1 style={{ marginBottom: "10px" }}>XYZ</h1>
-            <p style={{ fontWeight: "bold", fontSize: "20px", color: "green" }}>₹ </p>
+            <h1 style={{ marginBottom: "10px" }}>{product.product_name}</h1>
+            <p style={{ fontWeight: "bold", fontSize: "20px", color: "green" }}>₹ {product.selling_price}</p>
 
             <p style={{ marginTop: "20px", fontSize: "15px", color: "#555" }}>
-                {"No description available"}
+                {product.short_descp || "No description available"}
             </p>
 
             <div style={{ marginTop: "30px", display: "flex", gap: "15px" }}>
