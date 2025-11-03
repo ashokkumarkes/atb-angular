@@ -8,6 +8,10 @@ function ProductDetail(){
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
+        // const fetchProduct = async()=>{
+        //     const { data } = await axios.get(`http://localhost:5000/api/masters/get-products/${id}`);
+        //     setProduct(data.data[0])
+        // }
         axios.get(`http://localhost:5000/api/masters/get-products/${id}`)
         .then((res) => setProduct(res.data.data[0]))
         .catch(() => console.log("Error loading product"));
