@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
+  const totalQuantity = useSelector((state) => state.cart?.totalQuantity || 0);
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -22,6 +24,11 @@ function Navbar() {
           <li className="navbar-item">
             <Link to="/users" className="navbar-link">
               Users
+            </Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/cart" className="navbar-link">
+              Cart{totalQuantity > 0 ? ` (${totalQuantity})` : ''}
             </Link>
           </li>
         </ul>

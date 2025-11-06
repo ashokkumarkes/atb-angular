@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ProductList.css";
+import { useDispatch } from 'react-redux';
+import { addToCart } from './slices/cartSlice';
 
 // Default image URL
 const DEFAULT_IMAGE = "https://via.placeholder.com/300x200/667eea/ffffff?text=No+Image";
 
 function ProductList() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -118,7 +121,7 @@ function ProductList() {
 
                         {/* Action Buttons */}
                         <div className="product-actions">
-                            <button
+                            <button 
                                 className="product-button product-button-details"
                                 onClick={() => navigate(`/details/${item._id}`)}
                             >
@@ -126,7 +129,13 @@ function ProductList() {
                             </button>
                             <button
                                 className="product-button product-button-cart"
-                                onClick={() => console.log("Add to Cart Clicked:", item._id)}
+                                onClick={() => dispatch(addToCart({
+                                    id: item._id,
+                                    name: item.product_name || 'Product',
+                                    price: item.selling_price || 0,
+                                    image: item.product_thambnail,
+                                    quantity: 1,
+                                }))}
                             >
                                 Add to Cart
                             </button>
