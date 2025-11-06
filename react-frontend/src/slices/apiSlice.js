@@ -9,12 +9,14 @@ export const apiSlice = createApi({
     endpoints:(builder)=>({
         // Product endpoints
         getProducts: builder.query({
-            query: () => '/products',
-            providesTags: ['Product']
+            query: () => '/api/masters/get-products',
+            providesTags: ['Product'],
+            transformResponse: (response) => response.data || response
         }),
         getProduct: builder.query({
-            query: (id) => `/products/${id}`,
-            providesTags: (result, error, id) => [{ type: 'Product', id }]
+            query: (id) => `/api/masters/get-products/${id}`,
+            providesTags: (result, error, id) => [{ type: 'Product', id }],
+            transformResponse: (response) => response.data || response
         }),
         createProduct: builder.mutation({
             query: (product) => ({
