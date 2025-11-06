@@ -1,97 +1,141 @@
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./ProductList.css";
 
+// Default image URL
+const DEFAULT_IMAGE = "https://via.placeholder.com/300x200/667eea/ffffff?text=No+Image";
 
-function ProductList(){
+function ProductList() {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
-    useEffect(()=>{
-        axios.get("http://localhost:5000/api/masters/get-products").then((res)=>{
-        setProducts(res.data.data);
-    }).catch(()=>{
-        console.log("Error:");
-    });
-    },[]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    return(
-    <>
-        <h1 style={{ textAlign: "center" }}>Product List</h1>
+    useEffect(() => {
+        setLoading(true);
+        setError(null);
+        
+        axios.get("http://localhost:5000/api/masters/get-products")
+            .then((res) => {
+                setProducts(res.data.data || []);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Error fetching products:", err);
+                setError("Failed to load products. Please try again later.");
+                setLoading(false);
+            });
+    }, []);
 
-        <div style={{ 
-            display: "flex", 
-            flexWrap: "wrap", 
-            gap: "20px", 
-            justifyContent: "center",
-            marginTop: "20px"
-        }}>
+    // Handle image load error
+    const handleImageError = (e) => {
+        e.target.onerror = null; // Prevent infinite loop
+        e.target.src = DEFAULT_IMAGE;
+    };
 
-            {products.map((item) => (
-                <div 
-                    key={item._id}
-                    style={{
-                        width: "250px",
-                        border: "1px solid #ccc",
-                        borderRadius: "10px",
-                        padding: "15px",
-                        boxShadow: "0 0 10px rgba(0,0,0,0.15)",
-                        textAlign: "center",
-                        backgroundColor: "#fff"
-                    }}
-                >
-                    {/* Product Image */}
-                    <img 
-                        src={item.product_thambnail || "https://via.placeholder.com/200"} 
-                        alt={item.product_name}
-                        style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "10px" }}
-                    />
+    // Format price with commas
+    const formatPrice = (price) => {
+        if (!price) return "0";
+        return new Intl.NumberFormat('en-IN').format(price);
+    };
 
-                    <h3 style={{ marginTop: "10px" }}>{item.product_name}</h3>
-                    <p style={{ fontWeight: "bold", color: "green" }}>₹ {item.selling_price}</p>
-
-                    <p style={{ fontSize: "14px", color: "#555", minHeight: "40px" }}>
-                        {item.short_descp?.substring(0, 50) || "No description available"}...
-                    </p>
-
-                    {/* Buttons */}
-                    <div style={{marginTop: "10px", display: "flex", justifyContent: "space-between"}}>
-
-                        <button 
-                            style={{
-                                padding: "8px 12px",
-                                borderRadius: "5px",
-                                border: "none",
-                                backgroundColor: "#007bff",
-                                color: "white",
-                                cursor: "pointer",
-                                width: "48%"
-                            }}
-                            onClick={() =>  navigate(`/details/${item._id}`)}
-                        >
-                            Details
-                        </button>
-
-                        <button 
-                            style={{
-                                padding: "8px 12px",
-                                borderRadius: "5px",
-                                border: "none",
-                                backgroundColor: "#28a745",
-                                color: "white",
-                                cursor: "pointer",
-                                width: "48%"
-                            }}
-                            onClick={() => console.log("Add to Cart Clicked:", item._id)}
-                        >
-                            Add to Cart
-                        </button>
-                    </div>
+    if (loading) {
+        return (
+            <div className="product-list-container">
+                <div className="product-list-loading">
+                    <div className="loading-spinner"></div>
+                    <span>Loading products...</span>
                 </div>
-            ))}
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="product-list-container">
+                <div className="product-list-error">
+                    <h3>⚠️ Error</h3>
+                    <p>{error}</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (products.length === 0) {
+        return (
+            <div className="product-list-container">
+                <div className="product-list-empty">
+                    <div className="product-list-empty-icon">📦</div>
+                    <h3>No products found</h3>
+                    <p>There are no products available at the moment.</p>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="product-list-container">
+            <h1 className="product-list-title">Product List</h1>
+
+            <div className="product-list-grid">
+                {products.map((item) => (
+                    <div key={item._id} className="product-card">
+                        {/* Product Image with error handling */}
+                        <div className="product-image-container">
+                            {item.product_thambnail ? (
+                                <img
+                                    src={item.product_thambnail}
+                                    alt={item.product_name || "Product"}
+                                    className="product-image"
+                                    onError={handleImageError}
+                                />
+                            ) : (
+                                <div className="product-image-placeholder">
+                                    <span className="product-image-placeholder-icon">📦</span>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Product Name */}
+                        <h3 className="product-name">
+                            {item.product_name || "Unnamed Product"}
+                        </h3>
+
+                        {/* Product Price */}
+                        <p className="product-price">
+                            ₹ {formatPrice(item.selling_price)}
+                        </p>
+
+                        {/* Product Description */}
+                        <p className="product-description">
+                            {item.short_descp 
+                                ? (item.short_descp.length > 80 
+                                    ? `${item.short_descp.substring(0, 80)}...` 
+                                    : item.short_descp)
+                                : "No description available"}
+                        </p>
+
+                        {/* Action Buttons */}
+                        <div className="product-actions">
+                            <button
+                                className="product-button product-button-details"
+                                onClick={() => navigate(`/details/${item._id}`)}
+                            >
+                                Details
+                            </button>
+                            <button
+                                className="product-button product-button-cart"
+                                onClick={() => console.log("Add to Cart Clicked:", item._id)}
+                            >
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
-    </>
-);
+    );
 
 }
 
